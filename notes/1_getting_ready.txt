@@ -1,0 +1,13 @@
+For NASM assembler
+------------------
+
+Assembling steps
+
+Creating executable
+
+Debugging with gdb/ddd
+
+Register information, while debugging
+
+Disassembly view while debugging
+
