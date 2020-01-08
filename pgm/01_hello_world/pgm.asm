@@ -1,6 +1,5 @@
 section .data
 msg		db		'Hello world!',0Ah	;assign msg variable with your message
-string
 
 section .text
 global _start
