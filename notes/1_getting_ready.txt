@@ -1,9 +1,11 @@
-For NASM assembler
-------------------
+NASM assembler: Net wide assembler
+----------------------------------
 
-Assembling steps
+Assembling steps:
+nasm -f elf <pgm.asm> *
 
-Creating executable
+Link object file and Create executable
+ld -m elf_i386 <pgm.o> -o helloworld
 
 Debugging with gdb/ddd
 
