@@ -1,0 +1,14 @@
+1) R0 ... R15	: 16 integer 64 bits wide
+RAX RCX RDX RBX RSP RBP RSI RDI
+
+2)R0D ... R15D: 32 bits register
+EAX ECX EDX EBX ESP EBP ESI EDI
+
+3) R0W ... R15W: 16 bit register
+AX CX DX BX SP BP SI DI
+
+4) R0B ... R15B: 8 bit register
+AL CL DL BL SPL BPL SIL DIL
+AH CH DH BH : bits 8 - 15 of R0 - R3
+
+5) XMM0 ... Xmm15: 128 bit register

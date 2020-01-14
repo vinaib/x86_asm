@@ -1,0 +1,37 @@
+# byte, word, double word, float
+---------------------------------
+db	0x55				; byte 0x55
+db	0x55, 0x56,0x57		; three bytes in succession
+db	'a', 0x55			; character constants are ok
+db	'hello',13,10,'$'	; so are string constants
+
+dw	0x1234			; 0x34 0x12
+dw	'a'				; 0x61 0x00
+dw	'ab'			; 0x61 0x62
+dw	'abc'			; 0x61 0x62 0x63 0x00 (string)
+
+dd	0x12345678		; 0x78 0x56 0x34 0x12
+dd	1.234567e20		; floating point constant
+
+dq	0x123456789abcdef0	; eight byte constant
+dq	1.234567e20			; double precision float
+
+dt	1.234567e20			; extended precision float
+
+Examples:
+---------
+var_b	db 0155
+
+
+# To reserve space, without initializing. 
+# They should go in a section called .bss
+--------------------------------------------
+buffer:		resb	64		; reserve 64 bytes
+wordvar: 	resw	1		; reserve a word
+realarray: 	resq	10		; array of ten reals
+
+# Constants
+-----------
+MAX 	equ 100
+SIZE 	equ 1024
+
