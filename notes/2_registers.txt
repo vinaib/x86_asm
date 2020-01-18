@@ -12,3 +12,36 @@ AL CL DL BL SPL BPL SIL DIL
 AH CH DH BH : bits 8 - 15 of R0 - R3
 
 5) XMM0 ... Xmm15: 128 bit register
+
+General Purpose Registers:
+--------------------------
+EAX - Accumulator register - used for storing operands and result data
+EBX - Base register - pointer to data
+ECS - counter register - Loop operations
+EDX - Data register - I/O pointer
+
+ESI, EDI - Data pointer registers for memeory operations
+ESP - stack pointer register
+EBP - Stack data pointer register
+
+Segment Registers
+-----------------
+CS
+DS
+SS
+ES
+FS
+GS
+
+Instruction pointer register:
+-----------------------------
+EIP
+
+Control Registers:
+------------------
+CR0
+CR1
+CR2
+CR3
+CR4
+
