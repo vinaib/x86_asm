@@ -15,21 +15,27 @@ AH CH DH BH : bits 8 - 15 of R0 - R3
 
 General Purpose Registers:
 --------------------------
-EAX - Accumulator register - used for storing operands and result data
-EBX - Base register - pointer to data
-ECS - counter register - Loop operations
-EDX - Data register - I/O pointer
+EAX - Accumulator register - Multiply/divide used for storing operands and
+result data.
+EBX - Base register - pointer to data, index register for Move
+ECX - counter register - Loop operations, count for string operations and shifts
+EDX - Data register - I/O pointer, Port address for IN and OUT.
 
-ESI, EDI - Data pointer registers for memeory operations
-ESP - stack pointer register
-EBP - Stack data pointer register
+ESI - Data pointer register, points to source in stream operations
+EDI - Data pointer register, points to destination in stream operations
+ESP - stack pointer register: Points to top of stack
+EBP - Stack pointer register:Points to base of the stack frame
 
 Segment Registers
 -----------------
-CS
-DS
-SS
-ES
+CS:IP (Code segment, Instruction pointer) points to the address wheree the
+		processor will fetch the next byte of code.
+SS:SP (Stack segment, Stack pointer) points to the address of the top of the
+		stack, i.e. the most recently pushed byte.
+DS:SI (Data segment, Source Index) is often used to point to string data that is
+		about to be copied to ES:DI.
+ES:DI (Extra segment, Destination Index) is typically used to point to the
+		destination for a string copy, as mentioned above.
 FS
 GS
 
@@ -45,3 +51,11 @@ CR2
 CR3
 CR4
 
+System calls:
+--------------
+EAX: System call number: refer /usr/include/asm/unistd.h for syscall number
+EBX: first argument
+ECX: second argument
+EDX: third argument
+ESI: fourth argument
+EDI: fifth argument

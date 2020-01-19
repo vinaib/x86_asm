@@ -1,0 +1,22 @@
+X86 supports 5 modes
+---------------------
+Real Mode (16 bit)
+Protected Mode (16 and 32 bit)
+Long Mode (64 bit)
+Virtual 86 Mode (16 bit)
+System Management Mode (16 bit)
+
+	 A 16-bit subset of instructions are available on the 16-bit x86 processors,
+	 which are the 8086, 8088, 80186, 80188, and 80286. These instructions are
+	 available in real mode on all x86 processors, 
+	 
+	 and in 16-bit protected mode (80286 onwards)Additional instructions
+	 relating to protected mode are available.
+
+	 On the 80386 and later, 32-bit instructions (including later extensions)
+	are also available in all modes, including real mode; on these CPUs, V86
+	mode and 32-bit protected mode are added, with additional instructions
+	provided in these modes to manage their features.
+
+	Finally, in long mode, 64-bit instructions, and more registers, are also
+	available.

@@ -1,5 +1,12 @@
 NASM assembler: Net wide assembler
 ----------------------------------
+Comments: ;
+section .data
+section .text
+global _start
+
+Intel Syntax:
+mov %eax, 1
 
 Assembling steps:
 nasm -f elf <pgm.asm> *
@@ -12,4 +19,30 @@ Debugging with gdb/ddd
 Register information, while debugging
 
 Disassembly view while debugging
+
+
+GAS Assembler: GNU
+-------------------
+Comments: #
+.section .data
+.section .text
+.globl _start
+
+
+AT/T syntax:
+mov $1, %eax
+
+# 32 bit
+as pgm.s -o pgm.o --32
+# ld 32 bit
+ld pgm.o -o pgm_exe -m elf_i386
+
+# 64 bit
+as pgm.s -o pgm.o --64
+# ld 64 bit
+ld pgm.o -o pgm_exe -m elf_x86_64
+
+for gdb debugging:
+as --gstabs pgm.s -s pgm.o --32
+as --gstabs pgm.s -s pgm.o --64
 
