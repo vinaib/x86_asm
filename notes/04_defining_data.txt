@@ -1,3 +1,6 @@
+NASM syntax
+-----------
+
 # byte, word, double word, float
 ---------------------------------
 db	0x55				; byte 0x55
@@ -34,4 +37,25 @@ realarray: 	resq	10		; array of ten reals
 -----------
 MAX 	equ 100
 SIZE 	equ 1024
+
+
+
+AT/T, Intel Syntax:
+--------------------
+Data Types in .data: space reserved at compile time
+
+.byte 	= 	1 byte
+.ascii 	= 	string
+.asciz	=	null terminated string
+.int	=	32 bit integer
+.short	= 	16 bit integer
+.float 	=	single precision floating point number
+.double	=	double precision floating point number
+
+Data types in .bss: space reserved at run time
+----------------------------------------------
+.comm	=	declares common memory aread
+.lcomm	= 	declares local common area
+
+
 
