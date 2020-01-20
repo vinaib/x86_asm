@@ -1,0 +1,85 @@
+Moving strings from one memory location to another memory location: (MEM to MEM)
+--------------------------------------------------------------------------------
+
+String instructions implicitly copies from ESI to EDI, which means before
+executing MOVSX inst ESI and EDI should be initialized.
+
+MOVSx:
+
+MOVSB - move a byte (8 bits)
+MOVSW - move a word (16 bits)
+MOVSL - move a double word (32 bits)
+
+Source - 		ESI Points to memory location
+Destination - 	EDI points to memory location
+
+As MOVSx instruction executes, ESI and EDI automatically incremented by x.
+
+The DF flag
+-----------
+# Direction flag: part of EFLAGS registers
+# decides whether to increment/decrement ESI, EDI registers after a MOVSx inst.
+# if DF is set (1): ESI/EDI registers are decremented
+# if DF is clear(0): ESI/EDI registers are incremented
+
+# DF flag is set using STD instr
+# DF flag is cleared using CLD instr
+
+The REP instruction
+--------------------
+# is used to repeat a string inst over and over again till ECX register is 0
+# usage
+	Load the ECX reg with the string length
+	Use the REP MOVSx inst to copy yhe stirng from src to dest
+# variations of REP
+	REPZ - repeat inst while zero flag is set
+	REPNZ - repeat inst while zero flag is not set
+
+
+Loading Strings from Memory into Register (MEM to REG)
+------------------------------------------------------
+Instr: LODSx
+
+# Always loads strings into the EAX register 
+# string source needs to be pointed by ESI
+
+LODSx:
+LODSB - Load a byte from memory location into AL
+LODSW - Load a word from memory into AX
+LODSL - Load a double word from memory into EAX
+
+ESI is automatically incremented/decremented based on DF flag after the LODSx
+instruction executes
+
+Storing Strings from Registers into Memory: (REG to MEM)
+--------------------------------------------------------
+Instr: STOSx
+
+# Always stores into memory from EAX
+# EDI points to destination memory
+
+STOSx:
+STOSB - store AL to memory 
+STOSW - store AX to memory
+STOSL - store EAX to memory
+
+EDI is automatically incremented/decremented based on DF flag after the STOSx
+instruction executes
+
+Comparing strings:
+-------------------
+Instr: CMPSx
+
+# ESI points to source string
+# EDI points to destination string
+# DF flag decides whether ESI/EDI are increments/decrements
+
+CMPSx:
+CMPSB - compares byte value
+CMPSW - compares word value
+CMPSL - compares double word value
+
+CMPSx subtracts the destination string from the source string and sets the
+EFLAGS register appropriately.
+CF, ZF, PF, SF, OF etc are set
+

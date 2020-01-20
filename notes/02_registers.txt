@@ -59,3 +59,13 @@ ECX: second argument
 EDX: third argument
 ESI: fourth argument
 EDI: fifth argument
+int $0x80	: invoke system call
+
+EFLAGS:
+------
+CF - carry flag
+ZF - zero flag
+PF - parity flag
+SF - sign flag
+OF - overflow flag
+
