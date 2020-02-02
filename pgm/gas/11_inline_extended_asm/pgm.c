@@ -103,17 +103,24 @@ int main()
 			  "movl %2, %%eax;"
 			  "movl %3, %%ebx;"
 			  "idivl %%ebx;"
-			  : "=a" (quo),
-			    "=d" (rem)
-			  : "g" (arg1),
-			    "g" (arg2)
+			  : "=a" (quo), "=d" (rem)
+			  : "l" (arg1), "g" (arg2)
 			);
 */
+	__asm__ ("movl %0,%%eax\n"
+			 "movl %1,%%ebx\n"
+			 "movl %2,%%ecx\n"
+			 "addl %%eax,%%ebx\n"
+			 : "=a"(add)
+			 : "a"(arg1), "b"(arg2)
+			);
+
     printf( "%d + %d = %d\n", arg1, arg2, add );
     printf( "%d - %d = %d\n", arg1, arg2, sub );
     printf( "%d * %d = %d\n", arg1, arg2, mul );
   //  printf( "%d / %d = %d\n", arg1, arg2, quo );
-  //  printf( "%d %% %d = %d\n", arg1, arg2, rem );
+   // printf( "%d %% %d = %d\n", arg1, arg2, rem );
+    printf( "%d + %d = %d\n", arg1, arg2, add );
 	
 	return 0;
 }
