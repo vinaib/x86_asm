@@ -1,0 +1,28 @@
+--------------------------------------------------------------------------------
+Real-Address Mode:
+--------------------------------------------------------------------------------
+-> Only 1MB of memory can be addressed(20 bit Address bus)
+-> from 00000 to FFFFF
+-> processor can run only one program at a time
+-> Application programs can access any memory location
+-> 20 bit address cannot fit into 16bit registers. So segment and offset
+   mechanism is introduced.
+
+--------------------------------------------------------------------------------
+Protected Mode:
+--------------------------------------------------------------------------------
+-> processor can run multiple programs at a time
+-> each running program is assigned 4GB of memory
+-> programs cannot access each others code and data
+
+--------------------------------------------------------------------------------
+Virtual-8086 Mode:
+--------------------------------------------------------------------------------
+-> processor runs in protected mode and creates a virtual 8086 machine with its
+   own 1MB addresss sapce which runs in real address mode
+
+--------------------------------------------------------------------------------
+Segments:   
+--------------------------------------------------------------------------------
+-> All of the memory is divied into 64kB of segments(0x0000 - 0xffff)
+

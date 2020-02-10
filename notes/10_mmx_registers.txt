@@ -1,0 +1,25 @@
+--------------------------------------------------------------------------------
+MMX Registers: SIMD
+--------------------------------------------------------------------------------
+-> Introduced by intel for first time in Pentium processors
+-> this is used for advanced multimedia and communication applications
+-> there are eight 64  bit registers
+-> there are eight 128 bit registers
+-> supports SIMD
+
+--------------------------------------------------------------------------------
+Floating point registers
+--------------------------------------------------------------------------------
+-> eight 80 bit floating point data registers
+ST(0) ... ST(7)
+opcode register
+
+-> two 48 bit pointer registers
+FPU instruction pointer
+FPU data pointer
+
+-> two 16 bit control registers
+Tag register
+Control register
+Status register
+

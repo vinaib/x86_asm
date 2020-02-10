@@ -1,3 +1,45 @@
+--------------------------------------------------------------------------------
+8086(16 bit) registers
+--------------------------------------------------------------------------------
+# General purpose registers
+  16 bit: AX|BX|CX|DX
+  8 bit:  AH|AL   BH|BL   CH|CL   DH|DL
+
+# segment registers [CS|DS|ES|SS]
+# Index registers [SI|DI|DP|SP]  
+# Instruction Pointer [IP]
+# Flags register [Flags]  
+
+--------------------------------------------------------------------------------
+80386(32 bit) registers: First 32bit processor from intel
+--------------------------------------------------------------------------------
+# General purpose regusters: 	8
+  32bit: EAX|EBX|ECX|EDX|EBP|ESP|ESI|EDI
+
+# Segment register: 			6
+  16bit: CS|SS|DS|ES|FS|GS
+
+# Flags:						1
+  32bit: EFLAGS
+# IP:							1
+  32bit: EIP
+
+--------------------------------------------------------------------------------
+Pentium 4 (x64)
+--------------------------------------------------------------------------------
+# General purpose regusters: 	16
+  64bit: RAX|RBX|RCX|RDX|RBP|RSP|RSI|RDI
+  		 R8|R9|R10|R11|R12|R13|R14|R15
+
+		 RAX - R0: RBX - R1: ... RDI - R7
+
+# Instruction Pointer: 	RIP
+# Flags Register: 		RFLAGS
+# Segment register: 			6
+  16bit: CS|SS|DS|ES|FS|GS
+
+--------------------------------------------------------------------------------
+
 1) R0 ... R15	: 16 integer 64 bits wide
 RAX RCX RDX RBX RSP RBP RSI RDI
 
@@ -17,23 +59,31 @@ General Purpose Registers:
 --------------------------
 EAX - Accumulator register - Multiply/divide used for storing operands and
 result data.
-EBX - Base register - pointer to data, index register for Move
+EBX - Base register - pointer to data, index register for Move, address of
+	  variable or procedure
 ECX - counter register - Loop operations, count for string operations and shifts
 EDX - Data register - I/O pointer, Port address for IN and OUT.
+      Used for multiplication and division
 
-ESI - Data pointer register, points to source in stream operations
-EDI - Data pointer register, points to destination in stream operations
+# Index Registers
+-----------------	  
+ESI - Data pointer register, points to source in string operations
+EDI - Data pointer register, points to destination in string operations
 ESP - stack pointer register: Points to top of stack
 EBP - Stack pointer register:Points to base of the stack frame
 
 Segment Registers
 -----------------
-CS:IP (Code segment, Instruction pointer) points to the address wheree the
-		processor will fetch the next byte of code.
+-> CS: 	Base address for program Code
+   CS:IP (Code segment, Instruction pointer) points to the address where the
+         processor will fetch the next byte of code.
+-> SS: Base address for stack
 SS:SP (Stack segment, Stack pointer) points to the address of the top of the
 		stack, i.e. the most recently pushed byte.
+-> DS: Base address for variables
 DS:SI (Data segment, Source Index) is often used to point to string data that is
 		about to be copied to ES:DI.
+-> ES: Additional base address for vairabes in memory
 ES:DI (Extra segment, Destination Index) is typically used to point to the
 		destination for a string copy, as mentioned above.
 FS
@@ -51,8 +101,8 @@ CR2
 CR3
 CR4
 
-System calls:
---------------
+System calls: 32bit
+-------------------
 EAX: System call number: refer /usr/include/asm/unistd.h for syscall number
 EBX: first argument
 ECX: second argument
@@ -61,11 +111,46 @@ ESI: fourth argument
 EDI: fifth argument
 int $0x80	: invoke system call
 
-EFLAGS:
-------
-CF - carry flag
-ZF - zero flag
-PF - parity flag
-SF - sign flag
-OF - overflow flag
+System calls: 64bit
+-------------------
+system call table for 64 bit is different than 32 bit.
+RAX: System call number
+RDI: first arugment
+RSI: second argument
+RDX: third argument
+R10: fourth argument
+R8: fifth argument
+R9: sixth argument
 
+EFLAGS:
+--------------------------------------------------------------------------------
+Control flags:
+--------------
+-> control the cpu operation, for eg: break the execution flow ...
+
+Status flags:
+-------------
+-> reflect outcome of arithmetic and logical operations performed by the CPU
+
+CF - carry flag
+Set wwhen the result of an unsigned arithmetic operation is too large to fit
+into the destination
+
+ZF - zero flag
+set when the result of an arithmetic or logical operation is zero
+
+PF - parity flag
+Set if the least significant byte in the result contains an even number of 1
+bits
+Used in finding out of data corruption.
+
+SF - sign flag
+Set when the result of an arithmetic or logical operation is negative
+
+OF - overflow flag
+Set when the result of an signed arithmetic operation is too large to fit into
+the destination
+
+AC - Auxiliary Carry
+Set when an arithmetic operation causes a carry from bit3 to bit4 in an 8 bit
+operand.
