@@ -6,14 +6,16 @@ Real-Address Mode:
 -> processor can run only one program at a time
 -> Application programs can access any memory location
 -> 20 bit address cannot fit into 16bit registers. So segment and offset
-   mechanism is introduced.
+   mechanism is introduced by intel engineers.
+-> to represent 20 bit address, two 16 bit registers are used.
 
 --------------------------------------------------------------------------------
 Protected Mode:
 --------------------------------------------------------------------------------
 -> processor can run multiple programs at a time
--> each running program is assigned 4GB of memory
+-> each running program is assigned 4GB of memory (0x0000 0000 to 0xffff ffff)
 -> programs cannot access each others code and data
+-> segments refer to segment descriptor table.
 
 --------------------------------------------------------------------------------
 Virtual-8086 Mode:
@@ -25,4 +27,19 @@ Virtual-8086 Mode:
 Segments:   
 --------------------------------------------------------------------------------
 -> All of the memory is divied into 64kB of segments(0x0000 - 0xffff)
+-> to represent 20 bit address, two 16 bit registers are used
+# first 16 bit register for segment. For this one of the segment registers will
+# be used i.e. 	
+		a) Code segment
+  		b) data segment
+		c) stack segment
+		d) extra segment
+		e) fs
+		f) gs
+# second register for offset
+
+Example: segment - offset address: (08F1 : 0100)
+Adjusted segment value: (08F1 * 0100) = 08F10h (actual value is (0x08f100)
+		adjusted to 20 bits(0x08f10)
+-> these segment registers holds the base address of running program
 
