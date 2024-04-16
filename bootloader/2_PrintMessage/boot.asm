@@ -1,7 +1,8 @@
 ; nasm -f bin ./boot.asm -o ./boot.bin    ; assemble to binary as we have to run in qemu
 ; ndisasm ./boot.bin                      ; disassembly of boot.bin
-; qemu-system-x86_64 -hda boot.bin        ; this virtual system will print a
+; qemu-system-x86_64 -hda boot.bin        ; this virtual system will print a. -hda (hard drive)
 
+; Print Hello World program
 
 ; Bios loads OS boot loader into address 0x7C00 
 org 0x7c00  ; origin at 0x7c00, start executing at 0x7c00.
@@ -13,7 +14,7 @@ BITS 16     ; tells the assembler that we are using 16bit architecture
 start:
    mov si, message   ; si has the address of message label
    call print
-   jmp $          ; infinite loop
+   jmp $          ; infinite loop, keep jumping to itself
 
 print:
    mov bx, 0      ; background color
@@ -34,5 +35,9 @@ print_char:
 
 message: db 'Hello World', 0   ; declaring message as a string byte array
 
-times 510-($ - $$) db 0 ; last two bytes of first sector should contain boot signature
-dw 0xAA55               ; boot signature, bytes are swaped. As intel is little endian arch
+times 510-($ - $$) db 0 ; it says that we need to fill at least 510 bytes of data.
+dw 0xAA55               ; last two bytes of first sector should contain boot signature
+                        ; boot signature, bytes are swaped. As intel is little endian arch
+                        ; $$ represents the beginning of the .text section.
+                        ; $ represents the current position within the .text section.
+                        ; $ - $$ calculates the size of the .text section by subtracting the beginning position from the current position.
