@@ -4,21 +4,25 @@
 
 ; Print Hello World program
 
-; For example, 
-; if the Bios sets our data segment to 0x7C0 and our assembly program's origin is 0x7C00, then
-; the equation that will be dealt will be (DS * 16) + 0x7C00.
-; 0x7C00 + 0x7C00, which does not point to our message
-; Because of these types of scenarios, it makes sense for us to initialize the data segment and all the
-; other segment registers ourself.
 
+; As per this
+; https://wiki.osdev.org/FAT
 
 org 0x0  ; origin at 0x0
 
 BITS 16     ; tells the assembler that we are using 16bit architecture
             ; so that assembler assembles only 16bit instructions
 
-jmp 0x7c0:start    ; ensures that our CS is loaded with 0x7c0
-start:
+_start:
+   jmp short start1
+   nop
+
+times 33 db 0        ; place holder for bios parameter block
+
+start1:
+   jmp 0x7c0:start2    ; ensures that our CS is loaded with 0x7c0
+
+start2:
    cli               ; clear interrupt flag, disables interrupts
    mov ax, 0x7c0
    mov ds, ax
