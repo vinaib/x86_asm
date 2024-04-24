@@ -22,3 +22,8 @@ _start:
    out 0x92, al
 
    jmp $
+
+   ; fixing aligmnent issues with c code.
+   ; and place this asm at last in binary. This
+   ; can be controlled from linker.ld file
+   times 512-($-$$) db 0
