@@ -1,6 +1,8 @@
 [BITS 32]
 ; export the symbol _start
 global _start
+global problem
+extern kernel_main
 
 CODE_SEG equ 0x08
 DATA_SEG equ 0x10
@@ -21,8 +23,12 @@ _start:
    or al, 0x02
    out 0x92, al
 
+   call kernel_main
    jmp $
 
+problem:
+   mov eax, 0
+   div eax
    ; fixing aligmnent issues with c code.
    ; and place this asm at last in binary. This
    ; can be controlled from linker.ld file

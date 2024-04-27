@@ -1,0 +1,10 @@
+#ifndef __CONFIG_H__
+#define __CONFIG_H__
+
+#define KERNEL_CODE_SELECTOR 0x08
+#define KERNEL_DATA_SELECTOR 0x10
+
+
+#define PEACHOS_TOTAL_INTERRUPTS 512
+
+#endif // __CONFIG_H__
